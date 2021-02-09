@@ -1,17 +1,14 @@
-//
-//  twotrackApp.swift
-//  twotrack
-//
-//  Created by Desislav Hristov on 08/02/2021.
-//
-
 import SwiftUI
 
 @main
 struct twotrackApp: App {
+    
+    let engine = MainAudioEngine()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewModel: ContentViewModel(engine: engine))
+                .frame(minWidth: 400, minHeight: 200)
         }
     }
 }

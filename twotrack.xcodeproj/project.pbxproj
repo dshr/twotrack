@@ -7,13 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3430B39225D2E7FC00DDB598 /* a.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3430B39025D2E7FB00DDB598 /* a.mp3 */; };
+		3430B39325D2E7FC00DDB598 /* b.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3430B39125D2E7FC00DDB598 /* b.mp3 */; };
 		34F2A0FA25D1B9BF006A1629 /* twotrackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F2A0F925D1B9BF006A1629 /* twotrackApp.swift */; };
 		34F2A0FC25D1B9BF006A1629 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F2A0FB25D1B9BF006A1629 /* ContentView.swift */; };
 		34F2A0FE25D1B9C0006A1629 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34F2A0FD25D1B9C0006A1629 /* Assets.xcassets */; };
 		34F2A10125D1B9C0006A1629 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34F2A10025D1B9C0006A1629 /* Preview Assets.xcassets */; };
+		34F2A10C25D1B9F3006A1629 /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F2A10B25D1B9F3006A1629 /* AudioEngine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3430B39025D2E7FB00DDB598 /* a.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = a.mp3; sourceTree = "<group>"; };
+		3430B39125D2E7FC00DDB598 /* b.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = b.mp3; sourceTree = "<group>"; };
 		34F2A0F625D1B9BF006A1629 /* twotrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = twotrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34F2A0F925D1B9BF006A1629 /* twotrackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = twotrackApp.swift; sourceTree = "<group>"; };
 		34F2A0FB25D1B9BF006A1629 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -21,6 +26,7 @@
 		34F2A10025D1B9C0006A1629 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		34F2A10225D1B9C0006A1629 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34F2A10325D1B9C0006A1629 /* twotrack.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = twotrack.entitlements; sourceTree = "<group>"; };
+		34F2A10B25D1B9F3006A1629 /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +59,8 @@
 		34F2A0F825D1B9BF006A1629 /* twotrack */ = {
 			isa = PBXGroup;
 			children = (
+				34F2A10E25D1CB5F006A1629 /* Tracks */,
+				34F2A10A25D1B9DA006A1629 /* Audio */,
 				34F2A0F925D1B9BF006A1629 /* twotrackApp.swift */,
 				34F2A0FB25D1B9BF006A1629 /* ContentView.swift */,
 				34F2A0FD25D1B9C0006A1629 /* Assets.xcassets */,
@@ -69,6 +77,23 @@
 				34F2A10025D1B9C0006A1629 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		34F2A10A25D1B9DA006A1629 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				34F2A10B25D1B9F3006A1629 /* AudioEngine.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		34F2A10E25D1CB5F006A1629 /* Tracks */ = {
+			isa = PBXGroup;
+			children = (
+				3430B39025D2E7FB00DDB598 /* a.mp3 */,
+				3430B39125D2E7FC00DDB598 /* b.mp3 */,
+			);
+			path = Tracks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,6 +155,8 @@
 			files = (
 				34F2A10125D1B9C0006A1629 /* Preview Assets.xcassets in Resources */,
 				34F2A0FE25D1B9C0006A1629 /* Assets.xcassets in Resources */,
+				3430B39325D2E7FC00DDB598 /* b.mp3 in Resources */,
+				3430B39225D2E7FC00DDB598 /* a.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34F2A10C25D1B9F3006A1629 /* AudioEngine.swift in Sources */,
 				34F2A0FC25D1B9BF006A1629 /* ContentView.swift in Sources */,
 				34F2A0FA25D1B9BF006A1629 /* twotrackApp.swift in Sources */,
 			);
