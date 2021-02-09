@@ -12,6 +12,7 @@
 		34BA086225D2EA9C008D7C9D /* VSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BA086125D2EA9C008D7C9D /* VSlider.swift */; };
 		34BA086625D2EAD7008D7C9D /* CGPoint+Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BA086525D2EAD7008D7C9D /* CGPoint+Distance.swift */; };
 		34BA086925D2FF46008D7C9D /* MixSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BA086825D2FF46008D7C9D /* MixSlider.swift */; };
+		34BA086C25D32F37008D7C9D /* VUMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BA086B25D32F37008D7C9D /* VUMeter.swift */; };
 		34F2A0FA25D1B9BF006A1629 /* twotrackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F2A0F925D1B9BF006A1629 /* twotrackApp.swift */; };
 		34F2A0FC25D1B9BF006A1629 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F2A0FB25D1B9BF006A1629 /* ContentView.swift */; };
 		34F2A0FE25D1B9C0006A1629 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34F2A0FD25D1B9C0006A1629 /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 		34BA086125D2EA9C008D7C9D /* VSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSlider.swift; sourceTree = "<group>"; };
 		34BA086525D2EAD7008D7C9D /* CGPoint+Distance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Distance.swift"; sourceTree = "<group>"; };
 		34BA086825D2FF46008D7C9D /* MixSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixSlider.swift; sourceTree = "<group>"; };
+		34BA086B25D32F37008D7C9D /* VUMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VUMeter.swift; sourceTree = "<group>"; };
 		34F2A0F625D1B9BF006A1629 /* twotrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = twotrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34F2A0F925D1B9BF006A1629 /* twotrackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = twotrackApp.swift; sourceTree = "<group>"; };
 		34F2A0FB25D1B9BF006A1629 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 			children = (
 				34BA086125D2EA9C008D7C9D /* VSlider.swift */,
 				34BA086825D2FF46008D7C9D /* MixSlider.swift */,
+				34BA086B25D32F37008D7C9D /* VUMeter.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				34BA086625D2EAD7008D7C9D /* CGPoint+Distance.swift in Sources */,
 				34F2A0FA25D1B9BF006A1629 /* twotrackApp.swift in Sources */,
 				34BA086925D2FF46008D7C9D /* MixSlider.swift in Sources */,
+				34BA086C25D32F37008D7C9D /* VUMeter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,7 +26,12 @@ class ContentViewModel: ObservableObject {
         }
         .store(in: &cancellables)
         
-        engine.powerLevelPublisher.receive(on: DispatchQueue.main)
+        engine.powerLevelPublisher
+            .collect(.byTime(DispatchQueue.global(), .seconds(1/60)))
+            .compactMap({ values  in
+                return values.reduce(0, +) / Float(values.count)
+            })
+            .receive(on: DispatchQueue.main)
             .assign(to: &$powerLevel)
     }
     
@@ -41,18 +46,20 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text("\(viewModel.powerLevel)")
             HStack(alignment: .bottom) {
                 VSlider(value: $viewModel.trackAVolume, in: 0...5) {
                     Text("A")
                 }
-                MixSlider(
-                    value: $viewModel.crossFade,
-                    in: -1...1,
-                    leadingLabel: Text("A"),
-                    trailingLabel: Text("B")
-                ) {
-                    Text("Mix")
+                VStack {
+                    VUMeter(level: viewModel.powerLevel)
+                    MixSlider(
+                        value: $viewModel.crossFade,
+                        in: -1...1,
+                        leadingLabel: Text("A"),
+                        trailingLabel: Text("B")
+                    ) {
+                        Text("Mix")
+                    }
                 }.padding([.leading, .trailing], 20)
                 VSlider(value: $viewModel.trackBVolume, in: 0...5) {
                     Text("B")
