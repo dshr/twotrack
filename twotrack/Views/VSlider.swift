@@ -29,9 +29,9 @@ struct VSlider<Label, V: BinaryFloatingPoint>: View where Label: View {
                     Rectangle()
                         .foregroundColor(Color(.controlAccentColor))
                         .frame(height: geometry.size.height - getPoint(in: geometry).y)
-                    
+                   
                     label.foregroundColor(.primary)
-                        .padding(EdgeInsets(top: 0, leading: 0, bottom: radius / 4, trailing: 0))
+                        .padding(.bottom, radius * 0.25)
                 }
                 .frame(width: radius, height: geometry.size.height, alignment: .bottom)
                 .background(Color(.controlBackgroundColor))
@@ -49,7 +49,7 @@ struct VSlider<Label, V: BinaryFloatingPoint>: View where Label: View {
                     )
                 )
             }
-        }
+        }.frame(width: radius)
     }
 }
 
@@ -57,8 +57,8 @@ extension VSlider {
     private func getPoint(in geometry: GeometryProxy) -> CGPoint {
         let x = geometry.size.width / 2
         let location = value.wrappedValue - range.lowerBound
-        let scale = V(geometry.size.height) / (range.lowerBound - range.upperBound)
-        let y = CGFloat(location * scale) + geometry.size.height
+        let scale = V(geometry.size.height) / (range.upperBound - range.lowerBound)
+        let y = geometry.size.height - CGFloat(location * scale)
         return CGPoint(x: x, y: y)
     }
 
@@ -70,8 +70,8 @@ extension VSlider {
             }
 
             if validDrag {
-                let location = drag.location.y - geometry.size.height
-                let scale = CGFloat(range.lowerBound - range.upperBound) / geometry.size.height
+                let location = geometry.size.height - drag.location.y
+                let scale = CGFloat(range.upperBound - range.lowerBound) / geometry.size.height
                 let scaledValue = V(location * scale) + range.lowerBound
                 value.wrappedValue = max(min(scaledValue, range.upperBound), range.lowerBound)
             }
