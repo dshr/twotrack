@@ -42,14 +42,18 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Text("\(viewModel.powerLevel)")
-            Slider(value: $viewModel.trackAVolume, in: 0...5) {
-                Text("Track A Volume")
+            HStack(alignment: .bottom) {
+                VSlider(value: $viewModel.trackAVolume, in: 0...5) {
+                    Text("A").font(.system(.body, design: .monospaced))
+                }
+                VStack {
+                    Text("Mix")
+                    Slider(value: $viewModel.crossFade, in: -1...1)
+                }
+                VSlider(value: $viewModel.trackBVolume, in: 0...5) {
+                    Text("B").font(.system(.body, design: .monospaced))
+                }
             }
-            Slider(value: $viewModel.trackBVolume, in: 0...5) {
-                Text("Track B Volume")
-            }
-            Text("Mix")
-            Slider(value: $viewModel.crossFade, in: -1...1)
         }.padding()
         .onAppear {
             viewModel.play()

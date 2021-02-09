@@ -8,7 +8,7 @@ struct twotrackApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(viewModel: ContentViewModel(engine: engine))
-                .frame(minWidth: 400, minHeight: 200)
+                .frame(minWidth: 250, minHeight: 200)
         }
     }
 }
