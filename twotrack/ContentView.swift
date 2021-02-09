@@ -44,16 +44,20 @@ struct ContentView: View {
             Text("\(viewModel.powerLevel)")
             HStack(alignment: .bottom) {
                 VSlider(value: $viewModel.trackAVolume, in: 0...5) {
-                    Text("A").font(.system(.body, design: .monospaced))
+                    Text("A")
                 }
-                VStack {
+                MixSlider(
+                    value: $viewModel.crossFade,
+                    in: -1...1,
+                    leadingLabel: Text("A"),
+                    trailingLabel: Text("B")
+                ) {
                     Text("Mix")
-                    Slider(value: $viewModel.crossFade, in: -1...1)
-                }
+                }.padding([.leading, .trailing], 20)
                 VSlider(value: $viewModel.trackBVolume, in: 0...5) {
-                    Text("B").font(.system(.body, design: .monospaced))
+                    Text("B")
                 }
-            }
+            }.font(.system(.body, design: .monospaced))
         }.padding()
         .onAppear {
             viewModel.play()
