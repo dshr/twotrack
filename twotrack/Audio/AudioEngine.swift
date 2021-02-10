@@ -6,11 +6,13 @@ protocol AudioEngine {
     func play()
     func setTrackAVolume(value: Float)
     func setTrackBVolume(value: Float)
+    var peakLevelPublisher: CurrentValueSubject<Float, Never> { get }
     var powerLevelPublisher: CurrentValueSubject<Float, Never> { get }
 }
 
 class MainAudioEngine: AudioEngine {
-    var powerLevelPublisher = CurrentValueSubject<Float, Never>(0)
+    var peakLevelPublisher = CurrentValueSubject<Float, Never>(-160)
+    var powerLevelPublisher = CurrentValueSubject<Float, Never>(-160)
     
     private let engine = AVAudioEngine()
     private let trackAPlayer = AVAudioPlayerNode()
@@ -35,6 +37,10 @@ class MainAudioEngine: AudioEngine {
                 to: Int(buffer.frameLength),
                 by: buffer.stride
             ).map { channelDataPointer.pointee[$0] }
+            
+            let peak = channelData.map { abs($0) }.max() ?? -.infinity
+            let peakLevel = 20 * log10(peak)
+            self?.peakLevelPublisher.send(peakLevel)
             
             let rmsPower = sqrtf(channelData.map { powf($0, 2) }.reduce(0, +) / Float(buffer.frameLength))
             let averagePower = 20 * log10(rmsPower)

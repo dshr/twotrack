@@ -6,6 +6,7 @@ class ContentViewModel: ObservableObject {
     @Published var trackAVolume: Float = 1
     @Published var trackBVolume: Float = 1
     @Published var crossFade: Float = 0
+    @Published var peakLevel: Float = 0
     @Published var powerLevel: Float = 0
     
     private var engine: AudioEngine
@@ -25,6 +26,10 @@ class ContentViewModel: ObservableObject {
             engine.setTrackBVolume(value: volume * (mix + 1) * 0.5)
         }
         .store(in: &cancellables)
+        
+        engine.peakLevelPublisher
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$peakLevel)
         
         engine.powerLevelPublisher
             .collect(.byTime(DispatchQueue.global(), .seconds(1/60)))
@@ -47,11 +52,12 @@ struct ContentView: View {
     var body: some View {
         VStack {
             HStack(alignment: .bottom) {
-                VSlider(value: $viewModel.trackAVolume, in: 0...5) {
+                VSlider(value: $viewModel.trackAVolume, in: 0...2) {
                     Text("A")
                 }
                 VStack {
-                    VUMeter(level: viewModel.powerLevel)
+                    Text(String(format: "%.2f", viewModel.peakLevel))
+                    VUMeter(peakLevel: viewModel.peakLevel, powerLevel: viewModel.powerLevel)
                     MixSlider(
                         value: $viewModel.crossFade,
                         in: -1...1,
@@ -61,7 +67,7 @@ struct ContentView: View {
                         Text("Mix")
                     }
                 }.padding([.leading, .trailing], 20)
-                VSlider(value: $viewModel.trackBVolume, in: 0...5) {
+                VSlider(value: $viewModel.trackBVolume, in: 0...2) {
                     Text("B")
                 }
             }.font(.system(.body, design: .monospaced))
@@ -78,7 +84,8 @@ struct ContentView_Previews: PreviewProvider {
         func play() {}
         func setTrackAVolume(value: Float) {}
         func setTrackBVolume(value: Float) {}
-        var powerLevelPublisher = CurrentValueSubject<Float, Never>(170)
+        var peakLevelPublisher = CurrentValueSubject<Float, Never>(-70)
+        var powerLevelPublisher = CurrentValueSubject<Float, Never>(-70)
     }
     
     static var previews: some View {

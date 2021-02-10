@@ -1,21 +1,28 @@
 import SwiftUI
 
 struct VUMeter: View {
-    let level: Float
+    let peakLevel: Float
+    let powerLevel: Float
     
-    init(level: Float) {
-        self.level = level
+    init(peakLevel: Float, powerLevel: Float) {
+        self.peakLevel = peakLevel
+        self.powerLevel = powerLevel
+    }
+    
+    var color: Color {
+        peakLevel > 0 ? Color(.systemRed) : Color(.controlAccentColor)
     }
     
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
                 Rectangle()
-                    .foregroundColor(Color(.controlAccentColor))
-                    .frame(height: scaledLevel(level) * geometry.size.height)
+                    .foregroundColor(.white)
+                    .colorMultiply(color)
+                    .frame(height: scaledLevel(powerLevel) * geometry.size.height)
                     .animation(.linear)
                
-                Text(String(format: "%.2f", level)).foregroundColor(.primary)
+                Text(String(format: "%.2f", powerLevel)).foregroundColor(.primary)
                     .padding(.bottom, 10)
             }
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .bottom)
@@ -40,6 +47,6 @@ struct VUMeter: View {
 struct VUMeter_Previews: PreviewProvider {
     
     static var previews: some View {
-        VUMeter(level: -140).padding()
+        VUMeter(peakLevel: -140, powerLevel: -140).padding()
     }
 }
